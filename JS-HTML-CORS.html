@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CORS Test</title>
+  <script>
+    async function makeRequest() {
+      try {
+        // Making the GET request to the server with credentials included
+        const response = await fetch('http://eltiempo.com', {
+          method: 'GET',
+          credentials: 'include'
+        });
+
+        // Checking if the response is okay (status code 200-299)
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+
+        // Parsing the JSON data from the response
+        const data = await response.json();
+        console.log(data);
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    }
+  </script>
+</head>
+<body>
+  <button onclick="makeRequest()">Make CORS Request</button>
+</body>
+</html>
